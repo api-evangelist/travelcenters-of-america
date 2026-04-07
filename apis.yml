@@ -1,7 +1,12 @@
 aid: travelcenters-of-america
-url: https://raw.githubusercontent.com/api-evangelist/travelcenters-of-america/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/travelcenters-of-america/refs/heads/main/apis.yml
 modified: '2026-03-24'
 apis: []
 common:
   - type: Website
     url: https://www.travelcenters-of-america.com
+description: >-
+  TravelCenters of America is the largest publicly traded full-service travel center
+  network in the United States, operating travel centers under the TA, Petro Stopping
+  Centers, and TA Express brands.
