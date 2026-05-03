@@ -1,0 +1,130 @@
+name: TravelCenters of America Vocabulary
+description: Domain vocabulary for TravelCenters of America APIs covering travel center operations, truck services, and fleet management
+tags:
+  - Travel Centers
+  - Trucking
+  - Fleet Management
+  - Truck Service
+  - Fuel
+terms:
+  - term: ATCO Code
+    label: ATCO Code
+    definition: Administrative Traffic Commissioner code used in the UK (not applicable here; TA uses internal location IDs)
+    note: TA uses its own location ID system
+
+  - term: Travel Center
+    label: Travel Center
+    definition: A full-service truck stop facility providing fuel, parking, food, showers, laundry, and maintenance services for professional drivers
+    related:
+      - TA
+      - Petro
+      - TA Express
+
+  - term: TA
+    label: TA
+    definition: The main TravelCenters of America brand offering comprehensive services at full-size travel centers
+    related:
+      - Travel Center
+      - Brand
+
+  - term: Petro
+    label: Petro Stopping Centers
+    definition: Premium travel center brand operated by TravelCenters of America, known for high-quality facilities
+    related:
+      - Travel Center
+      - Brand
+
+  - term: TA Express
+    label: TA Express
+    definition: Smaller-format travel center brand operated by TravelCenters of America
+    related:
+      - Travel Center
+      - Brand
+
+  - term: TA Truck Service
+    label: TA Truck Service
+    definition: Full-service truck maintenance and repair operations at TA and Petro locations
+    related:
+      - Work Order
+      - Fleet
+
+  - term: Work Order
+    label: Work Order
+    definition: A service request and tracking record for truck maintenance or repair work performed at a TA Truck Service location
+    properties:
+      - status
+      - services
+      - total_amount
+      - vehicle_id
+
+  - term: DEF
+    label: Diesel Exhaust Fluid
+    definition: A urea-based fluid required by modern diesel engines with selective catalytic reduction systems to reduce emissions
+    related:
+      - Fuel
+      - Diesel
+
+  - term: Truck Lanes
+    label: Truck Fuel Lanes
+    definition: Dedicated high-flow diesel fuel lanes designed for commercial trucks and tractor-trailers
+    related:
+      - Fuel
+      - Travel Center
+
+  - term: Truck Parking
+    label: Truck Parking
+    definition: Dedicated parking spaces for commercial trucks at travel center locations
+    properties:
+      - total_spaces
+      - available_spaces
+
+  - term: Fuel Code
+    label: Fuel Authorization Code
+    definition: A code issued to fleet operators or drivers that authorizes fuel purchases at TA/Petro locations
+    related:
+      - Fleet
+      - Fuel
+
+  - term: Fleet
+    label: Fleet Operator
+    definition: A company operating multiple commercial vehicles that uses TA APIs for fuel management and truck service integration
+    related:
+      - Fuel Code
+      - Work Order
+
+  - term: Amenity
+    label: Travel Center Amenity
+    definition: A facility or service available at a travel center location such as a restaurant, laundry, shower, or wifi
+    values:
+      - diesel
+      - gasoline
+      - def
+      - restaurant
+      - showers
+      - laundry
+      - wifi
+      - truck-service
+      - scales
+      - natural-gas
+
+  - term: TruckSmart
+    label: TruckSmart App
+    definition: TravelCenters of America's mobile application for professional drivers to find locations, check availability, and manage services
+    related:
+      - Mobile App
+      - Driver Services
+
+  - term: Shower Availability
+    label: Shower Availability
+    definition: Real-time count of available shower facilities and estimated wait time at a travel center location
+    properties:
+      - available_showers
+      - total_showers
+      - estimated_wait_minutes
+
+  - term: Pricing
+    label: Fuel Pricing
+    definition: Current per-gallon prices for diesel, gasoline, DEF, and natural gas at travel center locations
+    related:
+      - Fuel
+      - Fleet

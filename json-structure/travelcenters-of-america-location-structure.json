@@ -1,0 +1,20 @@
+{
+  "name": "Travel Center Location",
+  "description": "Structure of a TA/Petro travel center location",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Location identifier"},
+    {"name": "name", "type": "string", "required": true, "description": "Location name"},
+    {"name": "brand", "type": "enum(TA|Petro|TA Express)", "required": true, "description": "Brand"},
+    {"name": "address", "type": "string", "required": true, "description": "Street address"},
+    {"name": "city", "type": "string", "required": true, "description": "City"},
+    {"name": "state", "type": "string", "required": true, "description": "US state code"},
+    {"name": "zip", "type": "string", "required": false, "description": "ZIP code"},
+    {"name": "lat", "type": "number", "required": true, "description": "Latitude"},
+    {"name": "lon", "type": "number", "required": true, "description": "Longitude"},
+    {"name": "phone", "type": "string", "required": false, "description": "Phone number"},
+    {"name": "hours", "type": "string", "required": false, "description": "Operating hours"},
+    {"name": "truck_lanes", "type": "integer", "required": false, "description": "Number of truck fuel lanes"},
+    {"name": "truck_parking_spaces", "type": "integer", "required": false, "description": "Truck parking capacity"},
+    {"name": "amenities", "type": "array<string>", "required": false, "description": "Available amenities"}
+  ]
+}

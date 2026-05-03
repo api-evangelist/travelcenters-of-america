@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.accessta.com/v1/locations?lat=41.8781&lon=-87.6298&radius=50&brand=TA",
+    "headers": {
+      "Authorization": "Bearer YOUR_API_TOKEN"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "loc_001",
+          "name": "TA Chicago",
+          "brand": "TA",
+          "address": "4201 South Cicero Avenue",
+          "city": "Chicago",
+          "state": "IL",
+          "zip": "60632",
+          "lat": 41.8104,
+          "lon": -87.7424,
+          "phone": "(773) 585-5000",
+          "hours": "24/7",
+          "truck_lanes": 8,
+          "truck_parking_spaces": 120,
+          "amenities": ["diesel", "gasoline", "def", "restaurant", "showers", "laundry", "wifi", "truck-service"]
+        },
+        {
+          "id": "loc_002",
+          "name": "Petro Bolingbrook",
+          "brand": "Petro",
+          "address": "500 Veterans Parkway",
+          "city": "Bolingbrook",
+          "state": "IL",
+          "zip": "60440",
+          "lat": 41.7058,
+          "lon": -88.0548,
+          "phone": "(630) 759-9100",
+          "hours": "24/7",
+          "truck_lanes": 12,
+          "truck_parking_spaces": 200,
+          "amenities": ["diesel", "gasoline", "def", "restaurant", "showers", "laundry", "wifi", "truck-service", "scales"]
+        }
+      ],
+      "total": 2
+    }
+  }
+}

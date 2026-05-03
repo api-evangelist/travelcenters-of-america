@@ -1,0 +1,253 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TravelCenters of America Fleet and Driver Services"
+  description: >-
+    Workflow capability for fleet operators and professional truck drivers
+    using TravelCenters of America (TA/Petro) locations. Covers location
+    discovery, parking and shower availability, fuel pricing, truck service
+    work orders, and fleet fuel code management.
+  tags:
+    - Travel Centers
+    - Truck Service
+    - Fleet Management
+    - Fuel
+    - Locations
+    - Trucking
+    - Driver Services
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TA_API_TOKEN: TA_API_TOKEN
+
+capability:
+  consumes:
+    - import: ta
+      location: ./shared/travelcenters-of-america.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: fleet-driver-api
+      description: "Unified REST API for fleet and driver services at TA/Petro travel centers."
+      resources:
+        - path: /v1/locations
+          name: locations
+          description: "Travel center location discovery"
+          operations:
+            - method: GET
+              name: list-locations
+              description: "Find travel centers by proximity, brand, or state"
+              call: "ta.list-locations"
+              with:
+                lat: "rest.lat"
+                lon: "rest.lon"
+                radius: "rest.radius"
+                brand: "rest.brand"
+                state: "rest.state"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/parking
+          name: parking
+          description: "Truck parking availability"
+          operations:
+            - method: GET
+              name: get-parking-availability
+              description: "Get real-time truck parking availability"
+              call: "ta.get-parking-availability"
+              with:
+                location_id: "rest.location_id"
+                lat: "rest.lat"
+                lon: "rest.lon"
+                radius: "rest.radius"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/showers
+          name: showers
+          description: "Shower facility availability"
+          operations:
+            - method: GET
+              name: get-shower-availability
+              description: "Get shower availability and wait times"
+              call: "ta.get-shower-availability"
+              with:
+                location_id: "rest.location_id"
+                lat: "rest.lat"
+                lon: "rest.lon"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/fuel-pricing
+          name: fuel-pricing
+          description: "Fuel prices at travel centers"
+          operations:
+            - method: GET
+              name: get-pricing
+              description: "Get current diesel, gasoline, and DEF pricing"
+              call: "ta.get-pricing"
+              with:
+                location_id: "rest.location_id"
+                fuel_type: "rest.fuel_type"
+                lat: "rest.lat"
+                lon: "rest.lon"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/work-orders
+          name: work-orders
+          description: "Truck service work orders"
+          operations:
+            - method: GET
+              name: list-work-orders
+              description: "List truck service work orders"
+              call: "ta.list-work-orders"
+              with:
+                status: "rest.status"
+                location_id: "rest.location_id"
+                start_date: "rest.start_date"
+                end_date: "rest.end_date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/documents
+          name: documents
+          description: "Service documentation search"
+          operations:
+            - method: GET
+              name: search-documents
+              description: "Search service records, invoices, and maintenance documents"
+              call: "ta.search-documents"
+              with:
+                work_order_id: "rest.work_order_id"
+                vehicle_id: "rest.vehicle_id"
+                document_type: "rest.document_type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/fuel-codes
+          name: fuel-codes
+          description: "Fleet fuel code management"
+          operations:
+            - method: GET
+              name: list-fuel-codes
+              description: "List fuel codes for the fleet"
+              call: "ta.list-fuel-codes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: fleet-driver-mcp
+      transport: http
+      description: "MCP server for AI-assisted fleet management and driver services at TA/Petro."
+      tools:
+        - name: find-travel-centers
+          description: "Find TA, Petro, or TA Express travel centers near a location"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ta.list-locations"
+          with:
+            lat: "tools.lat"
+            lon: "tools.lon"
+            radius: "tools.radius"
+            brand: "tools.brand"
+            state: "tools.state"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-parking-availability
+          description: "Check real-time truck parking availability at travel centers"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ta.get-parking-availability"
+          with:
+            location_id: "tools.location_id"
+            lat: "tools.lat"
+            lon: "tools.lon"
+            radius: "tools.radius"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-shower-availability
+          description: "Check shower facility availability and wait times at travel centers"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ta.get-shower-availability"
+          with:
+            location_id: "tools.location_id"
+            lat: "tools.lat"
+            lon: "tools.lon"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-fuel-pricing
+          description: "Get current diesel, gasoline, and DEF pricing at travel centers"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "ta.get-pricing"
+          with:
+            location_id: "tools.location_id"
+            fuel_type: "tools.fuel_type"
+            lat: "tools.lat"
+            lon: "tools.lon"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-work-orders
+          description: "List truck service work orders for fleet vehicles"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ta.list-work-orders"
+          with:
+            status: "tools.status"
+            location_id: "tools.location_id"
+            start_date: "tools.start_date"
+            end_date: "tools.end_date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-service-documents
+          description: "Search truck service records, invoices, and maintenance documents"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ta.search-documents"
+          with:
+            work_order_id: "tools.work_order_id"
+            vehicle_id: "tools.vehicle_id"
+            document_type: "tools.document_type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-fuel-codes
+          description: "List fleet fuel authorization codes for TA/Petro locations"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ta.list-fuel-codes"
+          outputParameters:
+            - type: object
+              mapping: "$."

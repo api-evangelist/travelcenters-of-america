@@ -1,0 +1,690 @@
+openapi: 3.0.3
+info:
+  title: TravelCenters of America API
+  description: >-
+    TravelCenters of America provides REST APIs for integrating with TA and
+    Petro travel center operations. Available services include truck service
+    work order management, retail location data, fuel codes, pricing, parking
+    availability, and shower availability across the largest publicly traded
+    full-service travel center network in the United States.
+  version: v1.0.0
+  contact:
+    name: TravelCenters of America Developer Support
+    url: https://www.ta-petro.com/developers/
+  x-logo:
+    url: https://www.ta-petro.com/logo.png
+servers:
+  - url: https://api.accessta.com/v1
+    description: TravelCenters of America Production API Server
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Locations
+    description: Travel center location search and amenity data
+  - name: Truck Service
+    description: Work order management for TA Truck Service
+  - name: Fuel Codes
+    description: Fuel code management for fleet operators
+  - name: Pricing
+    description: Fuel and service pricing data
+  - name: Parking
+    description: Parking availability at travel centers
+  - name: Showers
+    description: Shower facility availability
+paths:
+  /locations:
+    get:
+      operationId: listLocations
+      summary: List Locations
+      description: >-
+        Returns a list of TA, Petro, and TA Express travel center locations
+        with amenity details. Filter by geographic proximity, brand, or
+        amenity type.
+      tags:
+        - Locations
+      parameters:
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Latitude for proximity search
+        - name: lon
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Longitude for proximity search
+        - name: radius
+          in: query
+          required: false
+          schema:
+            type: number
+            default: 50
+          description: Search radius in miles
+        - name: brand
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [TA, Petro, TA Express]
+          description: Filter by travel center brand
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by US state code (e.g., OH, TX)
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+          description: Maximum locations to return
+      responses:
+        '200':
+          description: Successful response with location list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /locations/{id}:
+    get:
+      operationId: getLocation
+      summary: Get Location
+      description: >-
+        Returns detailed information for a specific travel center location
+        including all amenities, fuel lanes, truck parking, and services.
+      tags:
+        - Locations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier
+      responses:
+        '200':
+          description: Successful response with location details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /locations/{id}/amenities:
+    get:
+      operationId: getLocationAmenities
+      summary: Get Location Amenities
+      description: >-
+        Returns the full list of amenities available at a specific travel
+        center location, including restaurants, fuel types, services, and
+        facilities.
+      tags:
+        - Locations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier
+      responses:
+        '200':
+          description: Successful response with amenity list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmenityListResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /parking/availability:
+    get:
+      operationId: getParkingAvailability
+      summary: Get Parking Availability
+      description: >-
+        Returns current truck parking availability at travel center locations.
+        Provides real-time counts of available and occupied parking spaces.
+      tags:
+        - Parking
+      parameters:
+        - name: location_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by specific location ID
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Latitude for proximity search
+        - name: lon
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Longitude for proximity search
+        - name: radius
+          in: query
+          required: false
+          schema:
+            type: number
+            default: 50
+          description: Search radius in miles
+      responses:
+        '200':
+          description: Successful response with parking availability
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingAvailabilityResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /showers/availability:
+    get:
+      operationId: getShowerAvailability
+      summary: Get Shower Availability
+      description: >-
+        Returns current shower facility availability at travel center
+        locations, including wait times and number of available units.
+      tags:
+        - Showers
+      parameters:
+        - name: location_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by specific location ID
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Latitude for proximity search
+        - name: lon
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Longitude for proximity search
+        - name: radius
+          in: query
+          required: false
+          schema:
+            type: number
+            default: 50
+          description: Search radius in miles
+      responses:
+        '200':
+          description: Successful response with shower availability
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShowerAvailabilityResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /truck-service/work-orders:
+    get:
+      operationId: listWorkOrders
+      summary: List Work Orders
+      description: >-
+        Returns a list of TA Truck Service work orders for the authenticated
+        fleet or operator account.
+      tags:
+        - Truck Service
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [open, in-progress, completed, cancelled]
+          description: Filter by work order status
+        - name: location_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by service location
+        - name: start_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter work orders from this date
+        - name: end_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter work orders to this date
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Successful response with work order list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /truck-service/work-orders/{id}:
+    get:
+      operationId: getWorkOrder
+      summary: Get Work Order
+      description: Returns details of a specific TA Truck Service work order.
+      tags:
+        - Truck Service
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Work order identifier
+      responses:
+        '200':
+          description: Successful response with work order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /truck-service/documents:
+    get:
+      operationId: searchDocuments
+      summary: Search Documents
+      description: >-
+        Searches and retrieves TA Truck Service documentation including
+        service records, invoices, and repair histories.
+      tags:
+        - Truck Service
+      parameters:
+        - name: work_order_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by work order ID
+        - name: vehicle_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by vehicle identifier
+        - name: document_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [invoice, service-record, warranty, inspection]
+          description: Filter by document type
+        - name: start_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful response with document list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /fuel-codes:
+    get:
+      operationId: listFuelCodes
+      summary: List Fuel Codes
+      description: >-
+        Returns fuel codes for the authenticated fleet account, enabling
+        fuel transactions at TA and Petro travel center locations.
+      tags:
+        - Fuel Codes
+      responses:
+        '200':
+          description: Successful response with fuel code list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FuelCodeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /pricing:
+    get:
+      operationId: getPricing
+      summary: Get Pricing
+      description: >-
+        Returns current fuel and service pricing at travel center locations.
+        Provides diesel, gasoline, and DEF pricing by location.
+      tags:
+        - Pricing
+      parameters:
+        - name: location_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by specific location
+        - name: fuel_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [diesel, gasoline, def, natural-gas]
+          description: Filter by fuel type
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+        - name: lon
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+        - name: radius
+          in: query
+          required: false
+          schema:
+            type: number
+            default: 50
+          description: Search radius in miles
+      responses:
+        '200':
+          description: Successful response with pricing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API access token obtained via developer.accessta.com
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+          enum: [TA, Petro, TA Express]
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        lat:
+          type: number
+          format: float
+        lon:
+          type: number
+          format: float
+        phone:
+          type: string
+        hours:
+          type: string
+        truck_lanes:
+          type: integer
+        truck_parking_spaces:
+          type: integer
+        amenities:
+          type: array
+          items:
+            type: string
+    LocationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Location'
+    LocationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        total:
+          type: integer
+    Amenity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        available:
+          type: boolean
+    AmenityListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amenity'
+    ParkingAvailability:
+      type: object
+      properties:
+        location_id:
+          type: string
+        location_name:
+          type: string
+        total_spaces:
+          type: integer
+        available_spaces:
+          type: integer
+        occupied_spaces:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    ParkingAvailabilityResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParkingAvailability'
+    ShowerAvailability:
+      type: object
+      properties:
+        location_id:
+          type: string
+        location_name:
+          type: string
+        total_showers:
+          type: integer
+        available_showers:
+          type: integer
+        estimated_wait_minutes:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+    ShowerAvailabilityResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShowerAvailability'
+    WorkOrder:
+      type: object
+      properties:
+        id:
+          type: string
+        order_number:
+          type: string
+        location_id:
+          type: string
+        vehicle_id:
+          type: string
+        status:
+          type: string
+          enum: [open, in-progress, completed, cancelled]
+        services:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        total_amount:
+          type: number
+          format: float
+    WorkOrderResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkOrder'
+    WorkOrderListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        work_order_id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+    DocumentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+    FuelCode:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        vehicle_id:
+          type: string
+        driver_name:
+          type: string
+        active:
+          type: boolean
+        fuel_types:
+          type: array
+          items:
+            type: string
+    FuelCodeListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuelCode'
+    FuelPrice:
+      type: object
+      properties:
+        location_id:
+          type: string
+        location_name:
+          type: string
+        fuel_type:
+          type: string
+        price_per_gallon:
+          type: number
+          format: float
+        updated_at:
+          type: string
+          format: date-time
+    PricingResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuelPrice'

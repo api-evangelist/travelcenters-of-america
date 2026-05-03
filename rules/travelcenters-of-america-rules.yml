@@ -1,0 +1,90 @@
+extends: spectral:oas
+rules:
+  ta-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  ta-operationid-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  ta-tags-required:
+    description: All operations must have tags
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  ta-api-key-auth:
+    description: API must use API key authentication
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - apiKey
+          - http
+
+  ta-response-200-required:
+    description: GET operations must have a 200 response
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  ta-location-id-param:
+    description: Location-based queries should use location_id parameter consistently
+    severity: hint
+    given: "$.paths[*][*].parameters[*][?(@.name=='location_id')]"
+    then:
+      field: schema
+      function: truthy
+
+  ta-kebab-case-paths:
+    description: URL paths should use kebab-case for multi-word segments
+    severity: warn
+    given: "$.paths"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^/[a-z][a-z0-9-/{}]*$": {}
+
+  ta-data-wrapper:
+    description: Responses should wrap data in a data property
+    severity: warn
+    given: "$.components.schemas[?(@property.match(/Response$/))].properties"
+    then:
+      field: data
+      function: truthy
+
+  ta-timestamp-responses:
+    description: Availability responses should include a timestamp field
+    severity: hint
+    given: "$.components.schemas[?(@property.match(/Availability$/))].properties"
+    then:
+      field: timestamp
+      function: truthy
+
+  ta-pagination-for-lists:
+    description: List responses should include a total count
+    severity: hint
+    given: "$.components.schemas[?(@property.match(/ListResponse$/))].properties"
+    then:
+      field: total
+      function: truthy
