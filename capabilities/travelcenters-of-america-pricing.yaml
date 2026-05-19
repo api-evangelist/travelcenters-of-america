@@ -1,0 +1,103 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TravelCenters of America API — Pricing
+  description: 'TravelCenters of America API — Pricing. 1 operations. Lead operation: Get Pricing. Self-contained Naftiko
+    capability covering one Travelcenters Of America business surface.'
+  tags:
+  - Travelcenters Of America
+  - Pricing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRAVELCENTERS_OF_AMERICA_API_KEY: TRAVELCENTERS_OF_AMERICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: travelcenters-of-america-pricing
+    baseUri: https://api.accessta.com/v1
+    description: TravelCenters of America API — Pricing business capability. Self-contained, no shared references.
+    resources:
+    - name: pricing
+      path: /pricing
+      operations:
+      - name: getpricing
+        method: GET
+        description: Get Pricing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: query
+          type: string
+          description: Filter by specific location
+        - name: fuel_type
+          in: query
+          type: string
+          description: Filter by fuel type
+        - name: lat
+          in: query
+          type: number
+        - name: lon
+          in: query
+          type: number
+        - name: radius
+          in: query
+          type: number
+          description: Search radius in miles
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.TRAVELCENTERS_OF_AMERICA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: travelcenters-of-america-pricing-rest
+    port: 8080
+    description: REST adapter for TravelCenters of America API — Pricing. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/pricing
+      name: pricing
+      description: REST surface for pricing.
+      operations:
+      - method: GET
+        name: getpricing
+        description: Get Pricing
+        call: travelcenters-of-america-pricing.getpricing
+        with:
+          location_id: rest.location_id
+          fuel_type: rest.fuel_type
+          lat: rest.lat
+          lon: rest.lon
+          radius: rest.radius
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: travelcenters-of-america-pricing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TravelCenters of America API — Pricing. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-pricing
+      description: Get Pricing
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: travelcenters-of-america-pricing.getpricing
+      with:
+        location_id: tools.location_id
+        fuel_type: tools.fuel_type
+        lat: tools.lat
+        lon: tools.lon
+        radius: tools.radius
+      outputParameters:
+      - type: object
+        mapping: $.

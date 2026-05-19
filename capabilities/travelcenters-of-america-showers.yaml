@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TravelCenters of America API — Showers
+  description: 'TravelCenters of America API — Showers. 1 operations. Lead operation: Get Shower Availability. Self-contained
+    Naftiko capability covering one Travelcenters Of America business surface.'
+  tags:
+  - Travelcenters Of America
+  - Showers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRAVELCENTERS_OF_AMERICA_API_KEY: TRAVELCENTERS_OF_AMERICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: travelcenters-of-america-showers
+    baseUri: https://api.accessta.com/v1
+    description: TravelCenters of America API — Showers business capability. Self-contained, no shared references.
+    resources:
+    - name: showers-availability
+      path: /showers/availability
+      operations:
+      - name: getshoweravailability
+        method: GET
+        description: Get Shower Availability
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: query
+          type: string
+          description: Filter by specific location ID
+        - name: lat
+          in: query
+          type: number
+          description: Latitude for proximity search
+        - name: lon
+          in: query
+          type: number
+          description: Longitude for proximity search
+        - name: radius
+          in: query
+          type: number
+          description: Search radius in miles
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.TRAVELCENTERS_OF_AMERICA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: travelcenters-of-america-showers-rest
+    port: 8080
+    description: REST adapter for TravelCenters of America API — Showers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/showers/availability
+      name: showers-availability
+      description: REST surface for showers-availability.
+      operations:
+      - method: GET
+        name: getshoweravailability
+        description: Get Shower Availability
+        call: travelcenters-of-america-showers.getshoweravailability
+        with:
+          location_id: rest.location_id
+          lat: rest.lat
+          lon: rest.lon
+          radius: rest.radius
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: travelcenters-of-america-showers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TravelCenters of America API — Showers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-shower-availability
+      description: Get Shower Availability
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: travelcenters-of-america-showers.getshoweravailability
+      with:
+        location_id: tools.location_id
+        lat: tools.lat
+        lon: tools.lon
+        radius: tools.radius
+      outputParameters:
+      - type: object
+        mapping: $.

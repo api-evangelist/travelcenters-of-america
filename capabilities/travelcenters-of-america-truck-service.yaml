@@ -1,0 +1,209 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TravelCenters of America API — Truck Service
+  description: 'TravelCenters of America API — Truck Service. 3 operations. Lead operation: Search Documents. Self-contained
+    Naftiko capability covering one Travelcenters Of America business surface.'
+  tags:
+  - Travelcenters Of America
+  - Truck Service
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRAVELCENTERS_OF_AMERICA_API_KEY: TRAVELCENTERS_OF_AMERICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: travelcenters-of-america-truck-service
+    baseUri: https://api.accessta.com/v1
+    description: TravelCenters of America API — Truck Service business capability. Self-contained, no shared references.
+    resources:
+    - name: truck-service-documents
+      path: /truck-service/documents
+      operations:
+      - name: searchdocuments
+        method: GET
+        description: Search Documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: work_order_id
+          in: query
+          type: string
+          description: Filter by work order ID
+        - name: vehicle_id
+          in: query
+          type: string
+          description: Filter by vehicle identifier
+        - name: document_type
+          in: query
+          type: string
+          description: Filter by document type
+        - name: start_date
+          in: query
+          type: string
+        - name: end_date
+          in: query
+          type: string
+    - name: truck-service-work-orders
+      path: /truck-service/work-orders
+      operations:
+      - name: listworkorders
+        method: GET
+        description: List Work Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by work order status
+        - name: location_id
+          in: query
+          type: string
+          description: Filter by service location
+        - name: start_date
+          in: query
+          type: string
+          description: Filter work orders from this date
+        - name: end_date
+          in: query
+          type: string
+          description: Filter work orders to this date
+        - name: limit
+          in: query
+          type: integer
+    - name: truck-service-work-orders-id
+      path: /truck-service/work-orders/{id}
+      operations:
+      - name: getworkorder
+        method: GET
+        description: Get Work Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Work order identifier
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.TRAVELCENTERS_OF_AMERICA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: travelcenters-of-america-truck-service-rest
+    port: 8080
+    description: REST adapter for TravelCenters of America API — Truck Service. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/truck-service/documents
+      name: truck-service-documents
+      description: REST surface for truck-service-documents.
+      operations:
+      - method: GET
+        name: searchdocuments
+        description: Search Documents
+        call: travelcenters-of-america-truck-service.searchdocuments
+        with:
+          work_order_id: rest.work_order_id
+          vehicle_id: rest.vehicle_id
+          document_type: rest.document_type
+          start_date: rest.start_date
+          end_date: rest.end_date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/truck-service/work-orders
+      name: truck-service-work-orders
+      description: REST surface for truck-service-work-orders.
+      operations:
+      - method: GET
+        name: listworkorders
+        description: List Work Orders
+        call: travelcenters-of-america-truck-service.listworkorders
+        with:
+          status: rest.status
+          location_id: rest.location_id
+          start_date: rest.start_date
+          end_date: rest.end_date
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/truck-service/work-orders/{id}
+      name: truck-service-work-orders-id
+      description: REST surface for truck-service-work-orders-id.
+      operations:
+      - method: GET
+        name: getworkorder
+        description: Get Work Order
+        call: travelcenters-of-america-truck-service.getworkorder
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: travelcenters-of-america-truck-service-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TravelCenters of America API — Truck Service. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: search-documents
+      description: Search Documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: travelcenters-of-america-truck-service.searchdocuments
+      with:
+        work_order_id: tools.work_order_id
+        vehicle_id: tools.vehicle_id
+        document_type: tools.document_type
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-work-orders
+      description: List Work Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: travelcenters-of-america-truck-service.listworkorders
+      with:
+        status: tools.status
+        location_id: tools.location_id
+        start_date: tools.start_date
+        end_date: tools.end_date
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-work-order
+      description: Get Work Order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: travelcenters-of-america-truck-service.getworkorder
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
