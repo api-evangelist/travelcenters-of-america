@@ -1,0 +1,381 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TravelCenters of America API",
+    "version": "v1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/locations",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude for proximity search"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude for proximity search"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in miles"
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Filter by travel center brand"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by US state code (e.g., OH, TX)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum locations to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of TA, Petro, and TA Express travel center locations with amenity details. Filter by geographic proximity, brand, or amenity type."
+        },
+        {
+          "info": {
+            "name": "Get Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/locations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Location identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific travel center location including all amenities, fuel lanes, truck parking, and services."
+        },
+        {
+          "info": {
+            "name": "Get Location Amenities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/locations/:id/amenities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Location identifier"
+              }
+            ]
+          },
+          "docs": "Returns the full list of amenities available at a specific travel center location, including restaurants, fuel types, services, and facilities."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Parking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Parking Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/parking/availability",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific location ID"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude for proximity search"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude for proximity search"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in miles"
+              }
+            ]
+          },
+          "docs": "Returns current truck parking availability at travel center locations. Provides real-time counts of available and occupied parking spaces."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Showers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shower Availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/showers/availability",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific location ID"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude for proximity search"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude for proximity search"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in miles"
+              }
+            ]
+          },
+          "docs": "Returns current shower facility availability at travel center locations, including wait times and number of available units."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Truck Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Work Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/truck-service/work-orders",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by work order status"
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by service location"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter work orders from this date"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter work orders to this date"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of TA Truck Service work orders for the authenticated fleet or operator account."
+        },
+        {
+          "info": {
+            "name": "Get Work Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/truck-service/work-orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Work order identifier"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific TA Truck Service work order."
+        },
+        {
+          "info": {
+            "name": "Search Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/truck-service/documents",
+            "params": [
+              {
+                "name": "work_order_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by work order ID"
+              },
+              {
+                "name": "vehicle_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vehicle identifier"
+              },
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document type"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Searches and retrieves TA Truck Service documentation including service records, invoices, and repair histories."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fuel Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fuel Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/fuel-codes"
+          },
+          "docs": "Returns fuel codes for the authenticated fleet account, enabling fuel transactions at TA and Petro travel center locations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/pricing",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific location"
+              },
+              {
+                "name": "fuel_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by fuel type"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in miles"
+              }
+            ]
+          },
+          "docs": "Returns current fuel and service pricing at travel center locations. Provides diesel, gasoline, and DEF pricing by location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
