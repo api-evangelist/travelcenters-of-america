@@ -53,7 +53,7 @@ apis:
         url: rules/travelcenters-of-america-rules.yml
       - type: Vocabulary
         url: vocabulary/travelcenters-of-america-vocabulary.yml
-      - type: SignUp
+      - type: Signup
         url: https://services.accessta.com/APIRequest/DevApiRequest
       - type: Mobile App
         url: https://apps.apple.com/us/app/trucksmart/id420579235
@@ -74,7 +74,7 @@ common:
     url: https://developer.accessta.com/
   - type: Developers
     url: https://www.ta-petro.com/developers/
-  - type: SignUp
+  - type: Signup
     url: https://services.accessta.com/APIRequest/DevApiRequest
 maintainers:
   - FN: Kin Lane
