@@ -66,6 +66,10 @@ apis:
       - Fuel Code Management
       - Fuel Pricing
 common:
+  - type: DomainSecurity
+    url: security/travelcenters-of-america-domain-security.yml
+  - type: Authentication
+    url: authentication/travelcenters-of-america-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/travelcenters-of-america
   - type: Website
