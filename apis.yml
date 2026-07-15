@@ -66,6 +66,8 @@ apis:
       - Fuel Code Management
       - Fuel Pricing
 common:
+  - type: AgenticAccess
+    url: agentic-access/travelcenters-of-america-agentic-access.yml
   - type: DomainSecurity
     url: security/travelcenters-of-america-domain-security.yml
   - type: Authentication
