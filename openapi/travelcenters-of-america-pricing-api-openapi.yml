@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: TravelCenters of America Fuel Codes Pricing API
+  description: TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.
+  version: v1.0.0
+  contact:
+    name: TravelCenters of America Developer Support
+    url: https://www.ta-petro.com/developers/
+  x-logo:
+    url: https://www.ta-petro.com/logo.png
+servers:
+- url: https://api.accessta.com/v1
+  description: TravelCenters of America Production API Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Pricing
+  description: Fuel and service pricing data
+paths:
+  /pricing:
+    get:
+      operationId: getPricing
+      summary: Get Pricing
+      description: Returns current fuel and service pricing at travel center locations. Provides diesel, gasoline, and DEF pricing by location.
+      tags:
+      - Pricing
+      parameters:
+      - name: location_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by specific location
+      - name: fuel_type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - diesel
+          - gasoline
+          - def
+          - natural-gas
+        description: Filter by fuel type
+      - name: lat
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+      - name: lon
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 50
+        description: Search radius in miles
+      responses:
+        '200':
+          description: Successful response with pricing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+    PricingResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuelPrice'
+    FuelPrice:
+      type: object
+      properties:
+        location_id:
+          type: string
+        location_name:
+          type: string
+        fuel_type:
+          type: string
+        price_per_gallon:
+          type: number
+          format: float
+        updated_at:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API access token obtained via developer.accessta.com

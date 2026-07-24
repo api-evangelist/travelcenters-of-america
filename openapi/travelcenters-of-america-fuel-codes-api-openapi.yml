@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: TravelCenters of America Fuel Codes API
+  description: TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.
+  version: v1.0.0
+  contact:
+    name: TravelCenters of America Developer Support
+    url: https://www.ta-petro.com/developers/
+  x-logo:
+    url: https://www.ta-petro.com/logo.png
+servers:
+- url: https://api.accessta.com/v1
+  description: TravelCenters of America Production API Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Fuel Codes
+  description: Fuel code management for fleet operators
+paths:
+  /fuel-codes:
+    get:
+      operationId: listFuelCodes
+      summary: List Fuel Codes
+      description: Returns fuel codes for the authenticated fleet account, enabling fuel transactions at TA and Petro travel center locations.
+      tags:
+      - Fuel Codes
+      responses:
+        '200':
+          description: Successful response with fuel code list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FuelCodeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+    FuelCode:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        vehicle_id:
+          type: string
+        driver_name:
+          type: string
+        active:
+          type: boolean
+        fuel_types:
+          type: array
+          items:
+            type: string
+    FuelCodeListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuelCode'
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API access token obtained via developer.accessta.com

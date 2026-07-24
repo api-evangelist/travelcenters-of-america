@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: TravelCenters of America Fuel Codes Truck Service API
+  description: TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.
+  version: v1.0.0
+  contact:
+    name: TravelCenters of America Developer Support
+    url: https://www.ta-petro.com/developers/
+  x-logo:
+    url: https://www.ta-petro.com/logo.png
+servers:
+- url: https://api.accessta.com/v1
+  description: TravelCenters of America Production API Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Truck Service
+  description: Work order management for TA Truck Service
+paths:
+  /truck-service/work-orders:
+    get:
+      operationId: listWorkOrders
+      summary: List Work Orders
+      description: Returns a list of TA Truck Service work orders for the authenticated fleet or operator account.
+      tags:
+      - Truck Service
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - open
+          - in-progress
+          - completed
+          - cancelled
+        description: Filter by work order status
+      - name: location_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by service location
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Filter work orders from this date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Filter work orders to this date
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: Successful response with work order list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /truck-service/work-orders/{id}:
+    get:
+      operationId: getWorkOrder
+      summary: Get Work Order
+      description: Returns details of a specific TA Truck Service work order.
+      tags:
+      - Truck Service
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Work order identifier
+      responses:
+        '200':
+          description: Successful response with work order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /truck-service/documents:
+    get:
+      operationId: searchDocuments
+      summary: Search Documents
+      description: Searches and retrieves TA Truck Service documentation including service records, invoices, and repair histories.
+      tags:
+      - Truck Service
+      parameters:
+      - name: work_order_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by work order ID
+      - name: vehicle_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by vehicle identifier
+      - name: document_type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - invoice
+          - service-record
+          - warranty
+          - inspection
+        description: Filter by document type
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Successful response with document list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    WorkOrderResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkOrder'
+    WorkOrder:
+      type: object
+      properties:
+        id:
+          type: string
+        order_number:
+          type: string
+        location_id:
+          type: string
+        vehicle_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - in-progress
+          - completed
+          - cancelled
+        services:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        total_amount:
+          type: number
+          format: float
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+    DocumentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+    WorkOrderListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        work_order_id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API access token obtained via developer.accessta.com

@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: TravelCenters of America Fuel Codes Showers API
+  description: TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.
+  version: v1.0.0
+  contact:
+    name: TravelCenters of America Developer Support
+    url: https://www.ta-petro.com/developers/
+  x-logo:
+    url: https://www.ta-petro.com/logo.png
+servers:
+- url: https://api.accessta.com/v1
+  description: TravelCenters of America Production API Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Showers
+  description: Shower facility availability
+paths:
+  /showers/availability:
+    get:
+      operationId: getShowerAvailability
+      summary: Get Shower Availability
+      description: Returns current shower facility availability at travel center locations, including wait times and number of available units.
+      tags:
+      - Showers
+      parameters:
+      - name: location_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by specific location ID
+      - name: lat
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+        description: Latitude for proximity search
+      - name: lon
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+        description: Longitude for proximity search
+      - name: radius
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 50
+        description: Search radius in miles
+      responses:
+        '200':
+          description: Successful response with shower availability
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShowerAvailabilityResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ShowerAvailabilityResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShowerAvailability'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+    ShowerAvailability:
+      type: object
+      properties:
+        location_id:
+          type: string
+        location_name:
+          type: string
+        total_showers:
+          type: integer
+        available_showers:
+          type: integer
+        estimated_wait_minutes:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API access token obtained via developer.accessta.com
