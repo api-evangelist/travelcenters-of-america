@@ -6,9 +6,22 @@ description: >-
   service work order management, retail location data, fuel codes, pricing, parking availability, and shower
   availability.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/travelcenters-of-america.png
 tags:
   - Travel Centers
   - Truck Service
@@ -23,48 +36,162 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/travelcenters-of-america/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: travelcenters-of-america:travelcenters-of-america
-    name: TravelCenters of America API
-    description: >-
-      REST APIs for TA and Petro travel center operations including truck service work order management, retail location
-      data, fuel codes, pricing, parking, and shower availability across the largest US travel center network.
-    humanURL: https://developer.accessta.com/
-    baseURL: https://api.accessta.com/v1
-    tags:
-      - Travel Centers
-      - Truck Service
-      - Retail
-      - Fuel
-      - Locations
-      - Trucking
-      - Fleet Management
-    properties:
-      - type: Documentation
-        url: https://developer.accessta.com/
-      - type: OpenAPI
-        url: openapi/travelcenters-of-america-openapi.yml
-      - type: JSONSchema
-        url: json-schema/travelcenters-of-america-location-schema.json
-      - type: JSONStructure
-        url: json-structure/travelcenters-of-america-location-structure.json
-      - type: JSONLD
-        url: json-ld/travelcenters-of-america-context.jsonld
-      - type: SpectralRules
-        url: rules/travelcenters-of-america-rules.yml
-      - type: Vocabulary
-        url: vocabulary/travelcenters-of-america-vocabulary.yml
-      - type: Signup
-        url: https://services.accessta.com/APIRequest/DevApiRequest
-      - type: Mobile App
-        url: https://apps.apple.com/us/app/trucksmart/id420579235
-    x-services:
-      - Location and Amenities Lookup
-      - Parking Availability
-      - Shower Availability
-      - Work Order Management
-      - Documentation Search and Retrieval
-      - Fuel Code Management
-      - Fuel Pricing
+- aid: travelcenters-of-america:travelcenters-of-america-fuel-codes-api
+  name: TravelCenters of America Fuel Codes API
+  description: Fuel code management for fleet operators
+  humanURL: https://developer.accessta.com/
+  baseURL: https://api.accessta.com/v1
+  tags:
+  - Fuel Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/travelcenters-of-america-fuel-codes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accessta.com/
+  - type: JSONSchema
+    url: json-schema/travelcenters-of-america-location-schema.json
+  - type: JSONStructure
+    url: json-structure/travelcenters-of-america-location-structure.json
+  - type: JSONLD
+    url: json-ld/travelcenters-of-america-context.jsonld
+  - type: SpectralRules
+    url: rules/travelcenters-of-america-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelcenters-of-america-vocabulary.yml
+  - type: Signup
+    url: https://services.accessta.com/APIRequest/DevApiRequest
+  - type: Mobile App
+    url: https://apps.apple.com/us/app/trucksmart/id420579235
+- aid: travelcenters-of-america:travelcenters-of-america-locations-api
+  name: TravelCenters of America Locations API
+  description: Travel center location search and amenity data
+  humanURL: https://developer.accessta.com/
+  baseURL: https://api.accessta.com/v1
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/travelcenters-of-america-locations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accessta.com/
+  - type: JSONSchema
+    url: json-schema/travelcenters-of-america-location-schema.json
+  - type: JSONStructure
+    url: json-structure/travelcenters-of-america-location-structure.json
+  - type: JSONLD
+    url: json-ld/travelcenters-of-america-context.jsonld
+  - type: SpectralRules
+    url: rules/travelcenters-of-america-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelcenters-of-america-vocabulary.yml
+  - type: Signup
+    url: https://services.accessta.com/APIRequest/DevApiRequest
+  - type: Mobile App
+    url: https://apps.apple.com/us/app/trucksmart/id420579235
+- aid: travelcenters-of-america:travelcenters-of-america-parking-api
+  name: TravelCenters of America Parking API
+  description: Parking availability at travel centers
+  humanURL: https://developer.accessta.com/
+  baseURL: https://api.accessta.com/v1
+  tags:
+  - Parking
+  properties:
+  - type: OpenAPI
+    url: openapi/travelcenters-of-america-parking-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accessta.com/
+  - type: JSONSchema
+    url: json-schema/travelcenters-of-america-location-schema.json
+  - type: JSONStructure
+    url: json-structure/travelcenters-of-america-location-structure.json
+  - type: JSONLD
+    url: json-ld/travelcenters-of-america-context.jsonld
+  - type: SpectralRules
+    url: rules/travelcenters-of-america-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelcenters-of-america-vocabulary.yml
+  - type: Signup
+    url: https://services.accessta.com/APIRequest/DevApiRequest
+  - type: Mobile App
+    url: https://apps.apple.com/us/app/trucksmart/id420579235
+- aid: travelcenters-of-america:travelcenters-of-america-pricing-api
+  name: TravelCenters of America Pricing API
+  description: Fuel and service pricing data
+  humanURL: https://developer.accessta.com/
+  baseURL: https://api.accessta.com/v1
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/travelcenters-of-america-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accessta.com/
+  - type: JSONSchema
+    url: json-schema/travelcenters-of-america-location-schema.json
+  - type: JSONStructure
+    url: json-structure/travelcenters-of-america-location-structure.json
+  - type: JSONLD
+    url: json-ld/travelcenters-of-america-context.jsonld
+  - type: SpectralRules
+    url: rules/travelcenters-of-america-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelcenters-of-america-vocabulary.yml
+  - type: Signup
+    url: https://services.accessta.com/APIRequest/DevApiRequest
+  - type: Mobile App
+    url: https://apps.apple.com/us/app/trucksmart/id420579235
+- aid: travelcenters-of-america:travelcenters-of-america-showers-api
+  name: TravelCenters of America Showers API
+  description: Shower facility availability
+  humanURL: https://developer.accessta.com/
+  baseURL: https://api.accessta.com/v1
+  tags:
+  - Showers
+  properties:
+  - type: OpenAPI
+    url: openapi/travelcenters-of-america-showers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accessta.com/
+  - type: JSONSchema
+    url: json-schema/travelcenters-of-america-location-schema.json
+  - type: JSONStructure
+    url: json-structure/travelcenters-of-america-location-structure.json
+  - type: JSONLD
+    url: json-ld/travelcenters-of-america-context.jsonld
+  - type: SpectralRules
+    url: rules/travelcenters-of-america-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelcenters-of-america-vocabulary.yml
+  - type: Signup
+    url: https://services.accessta.com/APIRequest/DevApiRequest
+  - type: Mobile App
+    url: https://apps.apple.com/us/app/trucksmart/id420579235
+- aid: travelcenters-of-america:travelcenters-of-america-truck-service-api
+  name: TravelCenters of America Truck Service API
+  description: Work order management for TA Truck Service
+  humanURL: https://developer.accessta.com/
+  baseURL: https://api.accessta.com/v1
+  tags:
+  - Truck Service
+  properties:
+  - type: OpenAPI
+    url: openapi/travelcenters-of-america-truck-service-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accessta.com/
+  - type: JSONSchema
+    url: json-schema/travelcenters-of-america-location-schema.json
+  - type: JSONStructure
+    url: json-structure/travelcenters-of-america-location-structure.json
+  - type: JSONLD
+    url: json-ld/travelcenters-of-america-context.jsonld
+  - type: SpectralRules
+    url: rules/travelcenters-of-america-rules.yml
+  - type: Vocabulary
+    url: vocabulary/travelcenters-of-america-vocabulary.yml
+  - type: Signup
+    url: https://services.accessta.com/APIRequest/DevApiRequest
+  - type: Mobile App
+    url: https://apps.apple.com/us/app/trucksmart/id420579235
 common:
   - type: AgenticAccess
     url: agentic-access/travelcenters-of-america-agentic-access.yml
