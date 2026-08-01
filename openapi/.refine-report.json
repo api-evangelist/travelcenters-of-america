@@ -1,0 +1,24 @@
+{
+  "provider": "travelcenters-of-america",
+  "sources": [
+    "travelcenters-of-america-fuel-codes-api-openapi.yml",
+    "travelcenters-of-america-locations-api-openapi.yml",
+    "travelcenters-of-america-parking-api-openapi.yml",
+    "travelcenters-of-america-pricing-api-openapi.yml",
+    "travelcenters-of-america-showers-api-openapi.yml",
+    "travelcenters-of-america-truck-service-api-openapi.yml"
+  ],
+  "outputs": [
+    "travelcenters-of-america-fuel-codes-api-openapi.yml",
+    "travelcenters-of-america-locations-api-openapi.yml",
+    "travelcenters-of-america-parking-api-openapi.yml",
+    "travelcenters-of-america-pricing-api-openapi.yml",
+    "travelcenters-of-america-showers-api-openapi.yml",
+    "travelcenters-of-america-truck-service-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
