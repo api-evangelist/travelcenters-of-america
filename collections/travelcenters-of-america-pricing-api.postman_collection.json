@@ -1,0 +1,241 @@
+{
+  "item": [
+    {
+      "id": "5709cec9-1912-4156-a634-2ca25de1ca2d",
+      "name": "Pricing",
+      "description": {
+        "content": "Fuel and service pricing data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "21e172a9-5934-48e0-80af-55d0146d5e5f",
+          "name": "Get Pricing",
+          "request": {
+            "name": "Get Pricing",
+            "description": {
+              "content": "Returns current fuel and service pricing at travel center locations. Provides diesel, gasoline, and DEF pricing by location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pricing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<string>",
+                  "description": "Filter by specific location"
+                },
+                {
+                  "disabled": false,
+                  "key": "fuel_type",
+                  "value": "<string>",
+                  "description": "Filter by fuel type"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lon",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "50",
+                  "description": "Search radius in miles"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c950d2d4-d01d-4ae9-8255-1db9d6d9ec50",
+              "name": "Successful response with pricing data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fuel_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"location_id\": \"string\",\n      \"location_name\": \"string\",\n      \"fuel_type\": \"string\",\n      \"price_per_gallon\": 5283.407078037241,\n      \"updated_at\": \"2014-02-17T18:31:24.672Z\"\n    },\n    {\n      \"location_id\": \"string\",\n      \"location_name\": \"string\",\n      \"fuel_type\": \"string\",\n      \"price_per_gallon\": 4620.327212548071,\n      \"updated_at\": \"1952-02-13T05:20:53.755Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6beaf82e-7f20-48af-9f55-9e7773b29d99",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pricing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fuel_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 4058\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accessta.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1f380b0-1b2a-43b2-8e90-c7fe373a1262",
+    "name": "TravelCenters of America Fuel Codes Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.\n\nContact Support:\n Name: TravelCenters of America Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

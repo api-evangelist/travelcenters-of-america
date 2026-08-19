@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TravelCenters of America Fuel Codes API",
+    "version": "v1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fuel Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fuel Codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/fuel-codes"
+          },
+          "docs": "Returns fuel codes for the authenticated fleet account, enabling fuel transactions at TA and Petro travel center locations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

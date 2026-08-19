@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "23a0f6bb-e281-4675-bdf3-f1404c1526dc",
+      "name": "Fuel Codes",
+      "description": {
+        "content": "Fuel code management for fleet operators",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d256e5a9-c3ba-473b-b0f6-ed0deeed40af",
+          "name": "List Fuel Codes",
+          "request": {
+            "name": "List Fuel Codes",
+            "description": {
+              "content": "Returns fuel codes for the authenticated fleet account, enabling fuel transactions at TA and Petro travel center locations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fuel-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "481986a7-9a01-44d1-9bc0-edfbc0d9fb72",
+              "name": "Successful response with fuel code list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fuel-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"vehicle_id\": \"string\",\n      \"driver_name\": \"string\",\n      \"active\": true,\n      \"fuel_types\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"vehicle_id\": \"string\",\n      \"driver_name\": \"string\",\n      \"active\": false,\n      \"fuel_types\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6eebc363-cf09-4790-8d74-564d929d143b",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fuel-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 6621\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accessta.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e3b9facb-0a02-4be6-bacb-8dd67cff0c45",
+    "name": "TravelCenters of America Fuel Codes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.\n\nContact Support:\n Name: TravelCenters of America Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TravelCenters of America Fuel Codes Truck Service API",
+    "version": "v1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Truck Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Work Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/truck-service/work-orders",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by work order status"
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by service location"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter work orders from this date"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter work orders to this date"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of TA Truck Service work orders for the authenticated fleet or operator account."
+        },
+        {
+          "info": {
+            "name": "Get Work Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/truck-service/work-orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Work order identifier"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific TA Truck Service work order."
+        },
+        {
+          "info": {
+            "name": "Search Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/truck-service/documents",
+            "params": [
+              {
+                "name": "work_order_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by work order ID"
+              },
+              {
+                "name": "vehicle_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vehicle identifier"
+              },
+              {
+                "name": "document_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document type"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Searches and retrieves TA Truck Service documentation including service records, invoices, and repair histories."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

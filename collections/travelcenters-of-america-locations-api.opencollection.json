@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TravelCenters of America Fuel Codes Locations API",
+    "version": "v1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/locations",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude for proximity search"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude for proximity search"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in miles"
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Filter by travel center brand"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by US state code (e.g., OH, TX)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum locations to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of TA, Petro, and TA Express travel center locations with amenity details. Filter by geographic proximity, brand, or amenity type."
+        },
+        {
+          "info": {
+            "name": "Get Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/locations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Location identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a specific travel center location including all amenities, fuel lanes, truck parking, and services."
+        },
+        {
+          "info": {
+            "name": "Get Location Amenities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accessta.com/v1/locations/:id/amenities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Location identifier"
+              }
+            ]
+          },
+          "docs": "Returns the full list of amenities available at a specific travel center location, including restaurants, fuel types, services, and facilities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "bb5a45c1-1c7e-47b6-9cae-817bce5e9a64",
+      "name": "Showers",
+      "description": {
+        "content": "Shower facility availability",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f56b2ccd-93fd-4559-949f-4fd30ebfb5b2",
+          "name": "Get Shower Availability",
+          "request": {
+            "name": "Get Shower Availability",
+            "description": {
+              "content": "Returns current shower facility availability at travel center locations, including wait times and number of available units.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "showers",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<string>",
+                  "description": "Filter by specific location ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>",
+                  "description": "Latitude for proximity search"
+                },
+                {
+                  "disabled": false,
+                  "key": "lon",
+                  "value": "<float>",
+                  "description": "Longitude for proximity search"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "50",
+                  "description": "Search radius in miles"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bfc1ca8-3db1-4908-9cf2-5232350f164c",
+              "name": "Successful response with shower availability",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "showers",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"location_id\": \"string\",\n      \"location_name\": \"string\",\n      \"total_showers\": 5875,\n      \"available_showers\": 1100,\n      \"estimated_wait_minutes\": 7287,\n      \"timestamp\": \"2005-11-16T05:24:37.570Z\"\n    },\n    {\n      \"location_id\": \"string\",\n      \"location_name\": \"string\",\n      \"total_showers\": 3942,\n      \"available_showers\": 7611,\n      \"estimated_wait_minutes\": 2030,\n      \"timestamp\": \"1949-06-30T22:05:15.347Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fff4f76-b4fe-471f-a821-3dc150ea1b37",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "showers",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 3522\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accessta.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e29e8523-a5ce-4261-a343-53c26e361bb6",
+    "name": "TravelCenters of America Fuel Codes Showers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.\n\nContact Support:\n Name: TravelCenters of America Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,644 @@
+{
+  "item": [
+    {
+      "id": "8a7700fe-2ba6-4cba-be70-4a7e771cc167",
+      "name": "Truck Service",
+      "description": {
+        "content": "Work order management for TA Truck Service",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12cc9af4-1c71-459b-b490-b15d6d11408e",
+          "name": "List Work Orders",
+          "request": {
+            "name": "List Work Orders",
+            "description": {
+              "content": "Returns a list of TA Truck Service work orders for the authenticated fleet or operator account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "truck-service",
+                "work-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by work order status"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<string>",
+                  "description": "Filter by service location"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Filter work orders from this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "Filter work orders to this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0707101c-51d8-42a6-937d-e5856be0327d",
+              "name": "Successful response with work order list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "work-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"order_number\": \"string\",\n      \"location_id\": \"string\",\n      \"vehicle_id\": \"string\",\n      \"status\": \"in-progress\",\n      \"services\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"2010-04-10T09:53:15.859Z\",\n      \"completed_at\": \"1987-12-09T04:41:04.342Z\",\n      \"total_amount\": 1332.6770496228924\n    },\n    {\n      \"id\": \"string\",\n      \"order_number\": \"string\",\n      \"location_id\": \"string\",\n      \"vehicle_id\": \"string\",\n      \"status\": \"completed\",\n      \"services\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"2002-06-23T17:36:47.624Z\",\n      \"completed_at\": \"1998-06-22T04:59:11.196Z\",\n      \"total_amount\": 1179.895003934378\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68e5f080-13d0-4fca-8902-2b60f6c75540",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "work-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 2978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8cb7caf-b117-4441-a33f-9d189759dc30",
+          "name": "Get Work Order",
+          "request": {
+            "name": "Get Work Order",
+            "description": {
+              "content": "Returns details of a specific TA Truck Service work order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "truck-service",
+                "work-orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Work order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3e48a01-018c-4d79-b775-978bbaa79eed",
+              "name": "Successful response with work order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "work-orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Work order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"order_number\": \"string\",\n    \"location_id\": \"string\",\n    \"vehicle_id\": \"string\",\n    \"status\": \"in-progress\",\n    \"services\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1999-06-14T03:41:45.571Z\",\n    \"completed_at\": \"1964-02-11T09:44:24.755Z\",\n    \"total_amount\": 4883.930127094587\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c5f7b71-f8aa-43cf-9798-f81c62453765",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "work-orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Work order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 2978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be303281-a4f9-47b8-8240-dd6539f9a44a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "work-orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Work order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 2978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5d7f937-8c99-4457-836d-4b6587aa96f4",
+          "name": "Search Documents",
+          "request": {
+            "name": "Search Documents",
+            "description": {
+              "content": "Searches and retrieves TA Truck Service documentation including service records, invoices, and repair histories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "truck-service",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "work_order_id",
+                  "value": "<string>",
+                  "description": "Filter by work order ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicle_id",
+                  "value": "<string>",
+                  "description": "Filter by vehicle identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "document_type",
+                  "value": "<string>",
+                  "description": "Filter by document type"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f15f66af-53bb-4a98-a02c-982f1a488b35",
+              "name": "Successful response with document list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "work_order_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicle_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "document_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"work_order_id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"http://unrdPLdjwIicz.syRYQgHsJcX,NTLt94sgCj5zj0hzUmxurWIYNnpDzdMEJ9aKZ5d\",\n      \"created_at\": \"1968-05-15T16:21:32.227Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"work_order_id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"url\": \"http://OPVultvSMVNbZebOOezEry.gvNGyaIreKkx1tzngod-cjUsjuKSv66eaP07ffjbeAItdHI0c9V,-gM\",\n      \"created_at\": \"1972-10-04T10:18:54.011Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c452062-d467-4453-919d-82bb66dd69bf",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "truck-service",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "work_order_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicle_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "document_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"code\": 2978\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accessta.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a540072e-3eec-4ef4-80b3-472e5464455a",
+    "name": "TravelCenters of America Fuel Codes Truck Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.\n\nContact Support:\n Name: TravelCenters of America Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
