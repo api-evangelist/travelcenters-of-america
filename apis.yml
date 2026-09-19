@@ -40,6 +40,15 @@ tags:
   - Truck Service
   - Retail
   - Fuel
+  - Location
+  - Trucking
+  - Fleet Management
+  - Fortune 500
+tags_raw:
+  - Travel Centers
+  - Truck Service
+  - Retail
+  - Fuel
   - Locations
   - Trucking
   - Fleet Management
@@ -81,6 +90,8 @@ apis:
   humanURL: https://developer.accessta.com/
   baseURL: https://api.accessta.com/v1
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
