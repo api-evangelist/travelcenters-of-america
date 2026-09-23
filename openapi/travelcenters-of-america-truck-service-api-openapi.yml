@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TravelCenters of America Fuel Codes Truck Service API
+  title: TravelCenters of America Truck Service API
   description: TravelCenters of America provides REST APIs for integrating with TA and Petro travel center operations. Available services include truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability across the largest publicly traded full-service travel center network in the United States.
   version: v1.0.0
   contact:
@@ -150,11 +150,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    WorkOrderResponse:
+    WorkOrderListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/WorkOrder'
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
     WorkOrder:
       type: object
       properties:
@@ -181,9 +183,10 @@ components:
           type: string
           format: date-time
         completed_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         total_amount:
           type: number
           format: float
@@ -194,20 +197,11 @@ components:
           type: string
         code:
           type: integer
-    DocumentListResponse:
+    WorkOrderResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-    WorkOrderListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkOrder'
+          $ref: '#/components/schemas/WorkOrder'
     Document:
       type: object
       properties:
@@ -225,15 +219,22 @@ components:
         created_at:
           type: string
           format: date-time
+    DocumentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
   responses:
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:

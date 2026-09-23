@@ -1,7 +1,9 @@
 ---
 title: TravelCenters of America Celebrates 300th Travel Center ...
 url: https://www.prnewswire.com/news-releases/travelcenters-of-america-celebrates-300th-travel-center-milestone-302070078.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"TravelCenters of America" press release artificial intelligence'
 position: 2
 source: serpapi-google

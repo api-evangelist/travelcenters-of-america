@@ -1,12 +1,7 @@
 {
   "provider": "travelcenters-of-america",
   "sources": [
-    "travelcenters-of-america-fuel-codes-api-openapi.yml",
-    "travelcenters-of-america-locations-api-openapi.yml",
-    "travelcenters-of-america-parking-api-openapi.yml",
-    "travelcenters-of-america-pricing-api-openapi.yml",
-    "travelcenters-of-america-showers-api-openapi.yml",
-    "travelcenters-of-america-truck-service-api-openapi.yml"
+    "_original/travelcenters-of-america-openapi.yml"
   ],
   "outputs": [
     "travelcenters-of-america-fuel-codes-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "travelcenters-of-america-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "travelcenters-of-america-fuel-codes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travelcenters-of-america-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travelcenters-of-america-parking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travelcenters-of-america-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travelcenters-of-america-showers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travelcenters-of-america-truck-service-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

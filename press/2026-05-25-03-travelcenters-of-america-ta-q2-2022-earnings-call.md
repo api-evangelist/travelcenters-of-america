@@ -1,7 +1,9 @@
 ---
 title: TravelCenters of America (TA) Q2 2022 Earnings Call ...
 url: https://www.fool.com/earnings/call-transcripts/2022/08/02/travelcenters-of-america-ta-q2-2022-earnings-call/
-date: '2026-05-25'
+published: '2022-08-02'
+date_basis: url-derived
+harvested: '2026-05-25'
 query: '"TravelCenters of America" press release artificial intelligence'
 position: 3
 source: serpapi-google

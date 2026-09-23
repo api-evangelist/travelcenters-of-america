@@ -1,7 +1,9 @@
 ---
 title: TravelCenters of America Outlines Plans Heading into 50th ...
 url: https://www.ta-petro.com/blog/travelcenters-of-america-outlines-plans-heading-into-50th-anniversary-year/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"TravelCenters of America" press release artificial intelligence'
 position: 1
 source: serpapi-google
