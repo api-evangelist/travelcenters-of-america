@@ -150,13 +150,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    WorkOrderListResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkOrder'
+        error:
+          type: string
+        code:
+          type: integer
     WorkOrder:
       type: object
       properties:
@@ -190,18 +190,20 @@ components:
         total_amount:
           type: number
           format: float
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: integer
-    WorkOrderResponse:
+    DocumentListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/WorkOrder'
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+    WorkOrderListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkOrder'
     Document:
       type: object
       properties:
@@ -219,13 +221,11 @@ components:
         created_at:
           type: string
           format: date-time
-    DocumentListResponse:
+    WorkOrderResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
+          $ref: '#/components/schemas/WorkOrder'
   responses:
     NotFound:
       description: Resource not found

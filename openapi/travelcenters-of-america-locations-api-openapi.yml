@@ -135,26 +135,6 @@ components:
           type: string
         code:
           type: integer
-    AmenityListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Amenity'
-    Amenity:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-        available:
-          type: boolean
     LocationResponse:
       type: object
       properties:
@@ -169,6 +149,19 @@ components:
             $ref: '#/components/schemas/Location'
         total:
           type: integer
+    Amenity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        available:
+          type: boolean
     Location:
       type: object
       properties:
@@ -208,6 +201,13 @@ components:
           type: array
           items:
             type: string
+    AmenityListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amenity'
   responses:
     NotFound:
       description: Resource not found
