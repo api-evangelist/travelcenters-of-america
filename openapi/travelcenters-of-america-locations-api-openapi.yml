@@ -128,27 +128,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: integer
-    LocationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Location'
-    LocationListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-        total:
-          type: integer
     Amenity:
       type: object
       properties:
@@ -208,15 +187,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Amenity'
+    LocationResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Location'
+    LocationListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        total:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

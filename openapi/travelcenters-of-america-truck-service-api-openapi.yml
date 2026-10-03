@@ -150,6 +150,23 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+        work_order_id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
     ErrorResponse:
       type: object
       properties:
@@ -157,6 +174,18 @@ components:
           type: string
         code:
           type: integer
+    WorkOrderResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkOrder'
+    DocumentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
     WorkOrder:
       type: object
       properties:
@@ -190,13 +219,6 @@ components:
         total_amount:
           type: number
           format: float
-    DocumentListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
     WorkOrderListResponse:
       type: object
       properties:
@@ -204,37 +226,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkOrder'
-    Document:
-      type: object
-      properties:
-        id:
-          type: string
-        work_order_id:
-          type: string
-        type:
-          type: string
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        created_at:
-          type: string
-          format: date-time
-    WorkOrderResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/WorkOrder'
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Unauthorized - invalid or missing API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - invalid or missing API key
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
