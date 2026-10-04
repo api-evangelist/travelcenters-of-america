@@ -128,19 +128,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Amenity:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        error:
           type: string
-        name:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-        available:
-          type: boolean
+        code:
+          type: integer
     Location:
       type: object
       properties:
@@ -180,18 +174,19 @@ components:
           type: array
           items:
             type: string
-    AmenityListResponse:
+    Amenity:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Amenity'
-    LocationResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Location'
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        available:
+          type: boolean
     LocationListResponse:
       type: object
       properties:
@@ -201,13 +196,18 @@ components:
             $ref: '#/components/schemas/Location'
         total:
           type: integer
-    ErrorResponse:
+    LocationResponse:
       type: object
       properties:
-        error:
-          type: string
-        code:
-          type: integer
+        data:
+          $ref: '#/components/schemas/Location'
+    AmenityListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amenity'
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing API key

@@ -52,13 +52,6 @@ components:
           type: array
           items:
             type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        code:
-          type: integer
     FuelCodeListResponse:
       type: object
       properties:
@@ -66,6 +59,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FuelCode'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
   responses:
     Unauthorized:
       description: Unauthorized - invalid or missing API key
