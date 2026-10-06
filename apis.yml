@@ -54,7 +54,7 @@ tags_raw:
   - Fleet Management
   - Fortune 500
 created: '2026-03-24'
-modified: '2026-05-19'
+modified: '2026-10-06'
 url: https://raw.githubusercontent.com/api-evangelist/travelcenters-of-america/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
@@ -217,6 +217,8 @@ apis:
   - type: Mobile App
     url: https://apps.apple.com/us/app/trucksmart/id420579235
 common:
+  - url: https://www.ta-petro.com/newsroom/
+    type: Blog
   - type: AgenticAccess
     url: agentic-access/travelcenters-of-america-agentic-access.yml
   - type: DomainSecurity
