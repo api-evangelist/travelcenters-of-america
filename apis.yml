@@ -217,6 +217,12 @@ apis:
   - type: Mobile App
     url: https://apps.apple.com/us/app/trucksmart/id420579235
 common:
+  - type: Plans
+    url: plans/travelcenters-of-america-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/travelcenters-of-america-rate-limits.yml
+  - type: FinOps
+    url: finops/travelcenters-of-america-finops.yml
   - url: https://www.ta-petro.com/newsroom/
     type: Blog
   - type: AgenticAccess
