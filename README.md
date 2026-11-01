@@ -1,4 +1,4 @@
-# TravelCenters of America (travelcenters-of-america)
+# TravelCenters of America
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,71 +66,163 @@
 
 TravelCenters of America is the largest publicly traded full-service travel center network in the United States, operating under the TA, Petro Stopping Centers, and TA Express brands. The company provides REST APIs for truck service work order management, retail location data, fuel codes, pricing, parking availability, and shower availability.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/travelcenters-of-america/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/travelcenters-of-america/refs/heads/main/apis.yml)
+**Areas:** Travel Centers · Truck Service · Retail · Fuel · Location · Trucking · Fleet Management · Fortune 500
 
-## Scope
+## TravelCenters of America on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for TravelCenters of America is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/travelcenters-of-america/](https://apis.io/providers/travelcenters-of-america/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Travel Centers
-- Truck Service
-- Retail
-- Fuel
-- Locations
-- Trucking
-- Fleet Management
+- [TravelCenters of America Fuel Codes API](https://apis.io/apis/travelcenters-of-america/travelcenters-of-america-fuel-codes-api/) — Fuel code management for fleet operators
+- [TravelCenters of America Locations API](https://apis.io/apis/travelcenters-of-america/travelcenters-of-america-locations-api/) — Travel center location search and amenity data
+- [TravelCenters of America Parking API](https://apis.io/apis/travelcenters-of-america/travelcenters-of-america-parking-api/) — Parking availability at travel centers
+- [TravelCenters of America Pricing API](https://apis.io/apis/travelcenters-of-america/travelcenters-of-america-pricing-api/) — Fuel and service pricing data
+- [TravelCenters of America Showers API](https://apis.io/apis/travelcenters-of-america/travelcenters-of-america-showers-api/) — Shower facility availability
+- [TravelCenters of America Truck Service API](https://apis.io/apis/travelcenters-of-america/travelcenters-of-america-truck-service-api/) — Work order management for TA Truck Service
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-24
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### TravelCenters of America API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-REST APIs for TA and Petro travel center operations including truck service work order management, retail location data, fuel codes, pricing, parking, and shower availability across the largest US travel center network.
+- [Travelcenters Of America Agentic Access](https://apis.io/agentic-access/travelcenters-of-america/travelcenters-of-america-agentic-access/)
 
-- **Human URL:** [https://developer.accessta.com/](https://developer.accessta.com/)
-- **Base URL:** `https://api.accessta.com/v1`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Travel Centers
-- Truck Service
-- Retail
-- Fuel
-- Locations
-- Trucking
-- Fleet Management
+- [Travel Center Location](https://apis.io/schemas/travelcenters-of-america/travelcenters-of-america-location/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://developer.accessta.com/)
-- [OpenAPI](openapi/travelcenters-of-america-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/travelcenters-of-america.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/travelcenters-of-america.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/travelcenters-of-america-location-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/travelcenters-of-america-location-structure.json)
-- [JSON-LD](json-ld/travelcenters-of-america-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/travelcenters-of-america-rules.yml)
-- [Vocabulary](vocabulary/travelcenters-of-america-vocabulary.yml)
-- [Sign Up](https://services.accessta.com/APIRequest/DevApiRequest)
-- [Mobile  App](https://apps.apple.com/us/app/trucksmart/id420579235)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Travelcenters Of America Location Structure](https://apis.io/json-structure/travelcenters-of-america/travelcenters-of-america-location-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/travelcenters-of-america)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Travelcenters Of America Context](https://apis.io/jsonld/travelcenters-of-america/travelcenters-of-america-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [TravelCenters of America Vocabulary](https://apis.io/vocabularies/travelcenters-of-america/travelcenters-of-america-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Travelcenters Of America Get Parking Availability Example](https://apis.io/examples/travelcenters-of-america/travelcenters-of-america-get-parking-availability-example/)
+- [Travelcenters Of America List Locations Example](https://apis.io/examples/travelcenters-of-america/travelcenters-of-america-list-locations-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [TravelCenters of America API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america/)
+- [TravelCenters of America Fuel Codes API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america-fuel-codes-api/)
+- [TravelCenters of America Fuel Codes Locations API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america-locations-api/)
+- [TravelCenters of America Fuel Codes Parking API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america-parking-api/)
+- [TravelCenters of America Fuel Codes Pricing API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america-pricing-api/)
+- [TravelCenters of America Fuel Codes Showers API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america-showers-api/)
+- [TravelCenters of America Fuel Codes Truck Service API](https://apis.io/collections/travelcenters-of-america/open-travelcenters-of-america-truck-service-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [TravelCenters of America — jsonschema rules](https://apis.io/rules/travelcenters-of-america/travelcenters-of-america-jsonschema-spectral-rules/)
+- [TravelCenters of America API Rules](https://apis.io/rules/travelcenters-of-america/travelcenters-of-america-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Travelcenters Of America Authentication](https://apis.io/security/travelcenters-of-america/travelcenters-of-america-authentication/)
+- [Travelcenters Of America Domain Security](https://apis.io/security/travelcenters-of-america/travelcenters-of-america-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Travelcenters Of America Plans Pricing](https://apis.io/plans/travelcenters-of-america/travelcenters-of-america-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Travelcenters Of America Rate Limits](https://apis.io/rate-limits/travelcenters-of-america/travelcenters-of-america-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Travelcenters Of America Finops](https://apis.io/finops/travelcenters-of-america/travelcenters-of-america-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.ta-petro.com/)
 - [Documentation](https://developer.accessta.com/)
-- [Developers](https://www.ta-petro.com/developers/)
-- [Sign Up](https://services.accessta.com/APIRequest/DevApiRequest)
+- [Blog](https://www.ta-petro.com/newsroom/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 59.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 21.1 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/travelcenters-of-america/](https://apis.io/providers/travelcenters-of-america/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TravelCenters of America: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/travelcenters-of-america/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
